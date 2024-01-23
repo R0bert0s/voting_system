@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dodawanie głosowania</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico" />
+  </head>
+  <body>
+    <div id="nav"></div>
+    <div class="container">
+      <h1 class="mt-3 mb-3">Zarządzanie użytkownikami</h1>
+      <div class="small mb-5">(Sortowane alfabetycznie po nazwisku)</div>
+      <div class="table-wrapper">
+        <table id="manage-users-table" class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Imię</th>
+              <th scope="col">Naziwsko</th>
+              <th scope="col">Email</th>
+              <th scope="col">Data utworzenia</th>
+              <th class="text-center" scope="col">Sekretarz</th>
+              <th class="text-center" scope="col">Administrator</th>
+              <th class="text-center" scope="col"></th>
+              <th class="text-center" scope="col"></th>
+              <th class="text-center" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="userListTable">
+            <tr>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+              <td>
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"></span>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="liveAlertPlaceholder"></div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/manageUsers.js"></script>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog">
+        <div class="modal-content">
+          <form id="change-roll-modal-form">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Zmiana praw użytkownika
+              </h1>
+            </div>
+            <div class="modal-body text-center">
+              <div class="mb-3">Zmieniasz uprawnienia użytkowanika:</div>
+              <div class="row">
+                <div class="col-4">
+                  Imię
+                  <input
+                    class="form-control"
+                    type="text"
+                    disabled
+                    name=""
+                    id="u_name"
+                  />
+                </div>
+                <div class="col-4">
+                  Nazwisko
+                  <input
+                    class="form-control"
+                    type="text"
+                    disabled
+                    name=""
+                    id="u_sname"
+                  />
+                </div>
+                <div class="col-4">
+                  Identyfikator
+                  <input
+                    class="form-control"
+                    type="text"
+                    disabled
+                    name=""
+                    id="u_id"
+                  />
+                </div>
+              </div>
+              <hr />
+              <input
+                type="radio"
+                class="btn-check"
+                name="toggle-role"
+                id="default"
+                value="0"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="default"
+                ><span>Użytkownik</span>
+                <span class="material-symbols-outlined"> person </span></label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="toggle-role"
+                id="sekretarz"
+                value="1"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="sekretarz"
+                ><span> Sekretarz </span>
+                <span class="material-symbols-outlined"
+                  >clinical_notes</span
+                ></label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="toggle-role"
+                id="admin"
+                value="2"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="admin"
+                ><span> Administrator </span
+                ><span class="material-symbols-outlined"
+                  >shield_person</span
+                ></label
+              >
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                id="cancleChangeRoleButton"
+              >
+                Anuluj
+              </button>
+              <input
+                type="submit"
+                id="changeRoleButton"
+                class="btn btn-primary"
+                value=" Zmień uprawnienia"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

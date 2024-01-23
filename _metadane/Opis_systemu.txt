@@ -1,0 +1,110 @@
+Ogólne informacje :
+
+- system głosowania dla spódzielni miszkoaniowych
+- pozwala na glosowanie mieszkancom nad zmianami w spodzielni
+- kazdy mieszkaniec ma konto i dostep do platformy przez przegladarke
+- administracja czyli rada nadzorcza spodzielni ma dostep do tworzenia glosowan 
+- glosowanie zawiera tytul, opis, date otwarcia i zakonczenia oraz mozliwosc glosowania w trubie (za, przeciw), (za, przeciw, wstrzymanie się od głowsowania) lub wprowadzenie własnych opcji
+- po zakonczeniu terminu glosowania dostepny jest jej raport z podliczeniem glosow i możliwością pobrania wyników w formacie PDF
+- użytkownicy (mieszkańcy) mają też wgląd w historię wszystkich głosowań podzielonych na otwrte i zakończone
+
+
+-----------------------------------
+
+Ta aplikacja internetowa to system głosowania stworzony z myślą o mieszkańcach spółdzielni mieszkaniowych. Umożliwia ona demokratyczne podejmowanie decyzji dotyczących zmian w spółdzielni poprzez elektroniczne głosowanie. Każdy mieszkaniec ma indywidualne konto i dostęp do platformy za pośrednictwem przeglądarki internetowej. Dzięki dostępowi przez internet możemy pozwolić na głosowanie osobom z niepełnosprawnościami, co wspiera zasadę równego dostępu do procesu decyzyjnego. Sprawia to, że wszyscy mieszkańcy, niezależnie od indywidualnych przeciwskazań, mogą w pełni skorzystać z możliwości wyrażania swojego zdania.
+
+Administracja, czyli Rada Nadzorcza spółdzielni, ma uprawnienia do tworzenia nowych głosowań. Każde głosowanie posiada tytuł, opis, datę rozpoczęcia i zakończenia, a także opcje wyboru, takie jak "za" lub "przeciw", a także "wstrzymaj się od głosowania". Istnieje również możliwość dodawania własnych opcji przez twórców głosowań.
+
+Po zakończeniu terminu głosowania dostępny jest szczegółowy raport z podliczeniem głosów, a wyniki mogą być pobrane w formacie PDF. Użytkownicy, czyli mieszkańcy, mają również dostęp do historii wszystkich przeprowadzonych głosowań, zarówno tych otwartych, jak i już zakończonych. Dzięki temu zapewniane jest pełne zrozumienie i przejrzystość procesu decyzyjnego w spółdzielni mieszkaniowej.
+
+
+---------------------------------------
+
+Wymagania techniczne
+-interfejs
+    -przed zalogowaniem
+        -ekran logowania zawierajacy
+            -pole tekstowe na nr telefonu
+            -pole tekstowe na haslo
+            -przycisk do logowania
+    -po zalogowaniu
+        -pasek nawigacji u góry dający możliwość przemieszczania się po witrynie
+            -dla uzytkownika
+                -dostepne glosowania
+                -historia glosowan
+                -wyszukiwarka glosowania
+            -dla adnimistratora zto samo co użytkownik oraz podnadto:
+                -narzedzia admistratora w skład których wchodzi
+                    -zarzadzanie kontami
+                    -towrzenie glosowania
+                    -edycja glosowan
+- Konta
+    -konto uzytkownika zawiera takie informacje jak
+        -imie
+        -nazwisko
+        -lokal
+        -email
+        -data urodzenia
+        -haslo
+        -nr tel
+    -konto adnimistratora zawiera te same informacje co użytkownik oraz podnadto:
+        -ważność konta administratora
+        -stanowisko 
+-dodawanie nowego glosowania
+    -dostep do dodawania glosowania maja administratorzy
+    -pola do uzupelnienia dla glosowania to
+        - tytul ( tekst)
+        - opis (dlugi teskt)
+        - typ glosowania (3 opcje)
+            - za/przeciw
+            - za/przeciw/wstrzymanie
+            - niestandardowe opcje 
+        - wprowadzanie opcji niestandardowych (teskt) (używane jedynie w przypadku wybrania typu glosowania na niestandardowe opcje)
+            - ponizej wyswietlana bedzie numerowana lista wprowadzonych przez nas niestandardowych opcji z możliwością usuwania ich pojedynczo
+        -data rozpoczecia glosowania (rok, miesiac, dzien, godzina, minuta)
+        -data zakonczenia glosowania (rok, miesiac, dzien, godzina, minuta)
+        -wmagane kworum (checkbox tak/nie) (min 50% frekwencji)
+-glosowanie
+    -glosowanie odbywa sie na stronie internetowej
+    -dostep do glosowania ma kazdy zarejestrowany uzytkownik danej spodzielni
+    -na gorze wyswietlane sa dane zalogowanego uzyytkowniku w celu weryfikacji danych
+        -imie, nazwisko, email
+    -ponizej wyswietlane sa infomracje na temat glsoowania
+        -tytul
+        -opis
+        -data rozpoczecia i zakonczenia
+        -pozostaly czas w formacie (dni/godziny/minuty/sek)
+        -pole wyboru opcji 
+        -przycisk oddania glosu
+    -glosowac mozna gdy obecna data jest wieksza od daty rozpoczecia oraz mniejsza od daty zakonczenia
+    -po uplynieciu czasu pole wyboru opcji oraz przycisk oddawania glosu sa wylaczone
+    -glos mozna zmieniac do momentu zakonczenia glosowania
+    -w glosowaniu wybrana moze byc tylko jedna opcja
+    -jezeli nie oddano glosu w danym losowaniu naz status bedzie ozanczony jako nieobecny
+- raport
+    -dostep do raportow maja zalogowani uzytkownicy
+    -raport wyswietlany jest w formie strony internetowej
+    -raport generowany jest dla zakonczonych glosowan
+    -raport zawiera inforamcje o glosowaniu (tytul, opis, opcje, data roz, data zak, wyniki)
+    -raport moze wyswietlac rowniez informacje o niewaznosci glosowania w przypadku nie spelnienia kworum
+    -w przypadku glosowania z niestandardowymi opcjami
+        -obok kazdej opcji wyswietlany jest uzyskany przez nia wynik 
+        -opcje posegregowane sa od tej co uzyskala najwieksza ilosc glosow do tej ktora uzyskala najmniej
+        -po dostepnych opcjach wyswietlone sa wyniki dla osob wstrzymujacych sie od glosu oraz infomracja o ilosci nieoddanych glosow
+    -w przypadku glosowania za/przeciw/wstrzymanie
+        -kazda opcja wyswietla sie obok siebie wraz z liczba uzyskanych glosow
+        -dodakowo obok wisetla sie wynik nieobecnych w glsowaniu
+    -na dole raportu widnieje opcja pobrania raportu jako plik pdf gotowy do wydruku
+-historia glosowan
+    -historia glosowan jest dostepna dla zalogowanych uzytkoniwkow
+    -na gorze widnieje rowniez informacja o liczbie dostepnych dla nas glosowan
+    -historia glosowan podzielona jest na dwie czesci 
+        -otwrte glosowania, w ktorych mozna wziac udzial (na górze)
+        -zakonczone glosowania (na dole)
+    -otwarte glosowania zawiraja tytul, opis, data zakonczenia glosowania oraz przycisk umozliwiajacy przeniesienie do ekreanu glosowania
+    -zamkniete glosowania zwieraja tytul, opis, date zakonczenia glsoowania, status czy wzielismy udzial w danym glosowaniu oraz przycisk umozliwiajacy przeniesienie nas do ekranu raportu danego glosowania
+-wyszukiwarka glsoowania
+    -dostep do wyszukiwarki dla zalogowanych urzytkownikow
+    -wyszukiwarka zwiera pole tekstwe oraz tabele z wynikami
+    -pole tekstowe pozawala wproewadzi tytul wyszukiwanego glosowania
+    -tabela wyswietla wsystkie dopasowane glsoowania posegregowane data zakonczenia od najnowszych

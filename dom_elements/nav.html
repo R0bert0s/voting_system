@@ -1,0 +1,106 @@
+<nav
+  class="navbar navbar-expand-lg mb-5 navbar-dark pt-3 pb-3"
+  style="background-color: #415a77"
+>
+  <div class="container">
+    <a style="display: flex; align-items: center" class="navbar-brand" href="#">
+      <img
+        src="favicon/android-chrome-192x192.png"
+        alt="Logo"
+        width="50"
+        height="50"
+        class="d-inline-block align-text-top me-4" />
+      <span id="welcome-nav"></span>
+      <span
+        id="status-badge"
+        style="font-size: 10px"
+        class="badge badge-pill bg-success ms-1 me-3"
+      ></span
+    ></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse mt-3 mb-3 mt-md-0 mb-md-0"
+      id="navbarText"
+    >
+      <ul id="ul-list" class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="dostepneglosowania.html"
+            >Dostępne głosowania</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="nadchodzaceglosowania.html"
+            >Nadchodzące głosowania</a
+          >
+        </li>
+      </ul>
+      <div
+        onclick="logout()"
+        class="navbar-text p-2 bg-danger rounded text-bg-danger mt-3 mb-3 mt-md-0 mb-md-0 d-inline-block"
+      >
+        Wyloguj się
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  $("#welcome-nav").html("Wtaj " + parseJwt()["name"] + "!");
+
+  if (parseJwt()["admin"] == true) {
+    $("#ul-list").append(
+      ' <li class="nav-item dropdown">\
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">\
+          Narzędzia sekretarza\
+        </a>\
+        <ul class="dropdown-menu">\
+          <li><a class="dropdown-item" href="noweglosowanie.html">Dodaj głosowanie</a></li>\
+          <li><a class="dropdown-item" href="anulujglosowanie.html">Auluj głosowania</a></li>\
+          <li><a class="dropdown-item" href="historia.html">Historia i raporty</a></li>\
+          <li><a class="dropdown-item" href="podsumowanie.html">Raporty sumaryczne</a></li>\
+          <li><a class="dropdown-item" href="archiwizacja.html">Archiwizacja bazy danych</a></li>\
+        </ul>\
+      </li> \
+      <li class="nav-item dropdown">\
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">\
+          Narzędzia administratora\
+        </a>\
+        <ul class="dropdown-menu">\
+          <li><a class="dropdown-item" href="dodajuzytkownika.html">Dodaj uzytkownika</a></li>\
+          <li><a class="dropdown-item" href="zarzadzajuzytkownikami.html">Zarządzaj użytkownikami</a></li>\
+          <li><a class="dropdown-item" href="symulator.html">Symulator</a></li>\
+        </ul>\
+      </li>'
+    );
+    $("#status-badge").html("Admin");
+  } else if (parseJwt()["sekretarz"] == true) {
+    $("#ul-list").append(
+      '<li class="nav-item dropdown">\
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">\
+          Narzędzia sekretarza\
+        </a>\
+        <ul class="dropdown-menu">\
+          <li><a class="dropdown-item" href="noweglosowanie.html">Dodaj głosowanie</a></li>\
+          <li><a class="dropdown-item" href="anulujglosowanie.html">Auluj głosowania</a></li>\
+          <li><a class="dropdown-item" href="historia.html">Historia i raporty</a></li>\
+          <li><a class="dropdown-item" href="podsumowanie.html">Raporty sumaryczne</a></li>\
+          <li><a class="dropdown-item" href="archiwizacja.html">Archiwizacja bazy danych</a></li>\
+        </ul>\
+      </li>'
+    );
+    $("#status-badge")
+      .html("Sekretarz")
+      .removeClass("bg-success")
+      .addClass("bg-info");
+  }
+</script>

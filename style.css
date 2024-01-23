@@ -1,0 +1,97 @@
+label {
+  font-weight: bold;
+}
+
+.delete-option {
+  text-align: right;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  user-select: none;
+  vertical-align: bottom;
+}
+
+.pdf-button span {
+  vertical-align: bottom;
+}
+
+.vh-100 {
+  min-height: 100vh;
+}
+
+.alert-css {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.table-wrapper {
+  display: block;
+  overflow-x: auto;
+}
+
+#change-roll-modal-form label span {
+  padding-bottom: 0px;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 20px;
+  vertical-align: top;
+}
+#change-roll-modal-form label .material-symbols-outlined {
+  font-size: 20px !important;
+  margin-left: 4px;
+}
+
+.user-row:hover .delete-user-button,
+.user-row:hover .edit-user-button,
+.user-row:hover .password-user-button {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 1100px) {
+  .user-row .delete-user-button,
+  .user-row .edit-user-button,
+  .user-row .password-user-button {
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .user-row .delete-user-button,
+  .user-row .edit-user-button,
+  .user-row .password-user-button {
+    opacity: 0;
+  }
+}
+
+/* calendar */
+#calendar-box {
+  padding: 10px;
+  background-color: #e8eafd;
+  border: 1px solid #bbc1e9;
+  text-align: center;
+}
+#calendar-view {
+  margin: auto;
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+#calendar-view th,
+#calendar-view td {
+  font-size: 15px;
+  width: 47px !important;
+  height: 47px !important;
+  border-radius: 15px;
+
+  text-align: center;
+}
+
+.delete-voting-button {
+  cursor: pointer;
+  color: #484848;
+  transition: 0.2s all;
+}
+
+.delete-voting-button:hover {
+  color: red;
+}
